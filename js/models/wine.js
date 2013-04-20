@@ -11,11 +11,11 @@ var app = app || {};
             anyo:"",
             precio:"",
             cata:"",
-            targetPath: "../imageUploaded/wine.png"
+            targetPath: "./img/wine.png"
         },
 
         urlRoot: function(){
-            return "/wines/";
+            return "http://vinos-sasij.eu01.aws.af.cm/wines/";
         }
     });
 

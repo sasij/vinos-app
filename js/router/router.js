@@ -6,9 +6,12 @@ var app = app || {};
   app.Router = Backbone.Router.extend({
 
     routes:{
-      "" : "splash",
+      "" : "collection",
+      "index" : "collection",
+      "add" : "addWines",
+      "id/:identificator" : "viewDetail"
       //"filter/:color" : "urlFilter",
-      //"id/:identificator" : "viewDetail"
+
     },
 
     initialize: function(){
@@ -24,14 +27,31 @@ var app = app || {};
     },
 
     // actions for index
-    splash: function() {
-      console.log("splash");
-      app.splash_view = new app.SplashView();
-      this.changePage(app.splash_view);
-      //app.coleccion_vinos = new app.ColeccionVinos();
-      //app.vista_coleccion_vinos = new app.VistaColeccionVinos({collection: this.coleccion_vinos});
-      //app.coleccion_vinos.fetch();
-      //app.vista_coleccion_vinos.render();
+    collection: function() {
+      console.log("coleccion");
+      //app.collection_view = new app.CollectionView();
+      //this.changePage(app.collection_view);
+      $.mobile.showPageLoadingMsg();
+      app.coleccion_vinos = new app.ColeccionVinos();
+      app.vista_coleccion_vinos = new app.CollectionWinesView({collection: this.coleccion_vinos});
+      app.coleccion_vinos.fetch();
+      app.vista_coleccion_vinos.render();
+      this.changePage(app.vista_coleccion_vinos);
+    },
+
+    addWines: function(){
+      console.log("Nuevo vino");
+      app.vista_nuevo_vino = new app.VistaNuevoVino();
+      this.changePage(app.vista_nuevo_vino);
+    },
+
+    viewDetail: function(identificator){
+      console.log("Vista detalle");
+      app.vino = new app.Vino({id:identificator});
+      app.vista_detallada_vino = new app.VistaDetalleVino({model:app.vino});
+      app.vino.fetch();
+      //app.vista_detallada_vino.render();
+      this.changePage(app.vista_detallada_vino);
     },
 
     changePage:function (page) {
@@ -61,6 +81,7 @@ var app = app || {};
             console.log("no back");
             $.mobile.changePage($(page.el), {changeHash:false, transition: 'slide' , reverse: false});
         }
+
     }
 
   });
