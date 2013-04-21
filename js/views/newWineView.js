@@ -9,10 +9,10 @@ var app = app || {};
     initialize: function(){
       console.log("initialize nuevo vino");
     },
-
     render:function(){
       var tmpl = _.template(this.template);
       $(this.el).html(tmpl);
+
       return this;
     }
 

@@ -28,7 +28,7 @@ var app = app || {};
       $(this.el).html('\
         <div data-role="header">\
           <h1>Los vinos de sasij</h1>\
-          <a data-role="button" class="ui-btn-right" data-icon="plus" data-corners="false" data-iconpos="notext" data-theme="a"></a>\
+          <a href="#add" data-role="button" class="ui-btn-right" data-icon="plus" data-corners="false" data-iconpos="notext" data-theme="a"></a>\
         </div>');
       //Creo la lista
       $(this.el).append('<ul data-role="listview" id="vinos">');
@@ -56,7 +56,7 @@ var app = app || {};
 
     addWine: function(){
       console.log("dentro");
-      app.router.navigate("/add", {trigger: true, replace: true});
+      //app.router.navigate("/add", true);
     }
 });
 
