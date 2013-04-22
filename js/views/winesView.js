@@ -2,9 +2,9 @@ var app = app || {};
 
 (function($){
 
-  app.CollectionWinesView = Backbone.View.extend({
+  var isPull = false;
 
-    //template: $("#vinoTemplate").html(),
+  app.CollectionWinesView = Backbone.View.extend({
 
     template:_.template($("#lista").html()),
 
@@ -12,13 +12,34 @@ var app = app || {};
 
       _.bindAll(this);
 
-      app.coleccion_vinos.on("reset", this.render, this);
+      app.coleccion_vinos.on("reset", this.switchAction, this);
 
       //$('.navbar li').on('click', this.changeNavbar);
     },
 
     events: {
-      'click .ui-btn-right': 'addWine'
+      'click .ui-btn-right': 'addWine',
+      'pulled #content': 'pullAction',
+    },
+
+    switchAction: function(){
+      if(isPull === false)
+        this.render();
+      else{
+        // $('#vinos').html('');
+        $('#vinos').remove();
+        $('#content').append('<ul data-role="listview" id="vinos">');
+        //añado los elementos a la lista
+        _.each(app.coleccion_vinos.models, function (item){
+          this.renderVino(item);
+        }, this);
+
+        isPull = false;
+        $(this.el).trigger( "pagecreate" );
+        $('#vinos').listview("refresh");
+        $('#content').scrollz('hidePullHeader');
+
+      }
     },
 
     render:function (eventName) {
@@ -30,8 +51,10 @@ var app = app || {};
           <h1>Los vinos de sasij</h1>\
           <a href="#add" data-role="button" class="ui-btn-right" data-icon="plus" data-corners="false" data-iconpos="notext" data-theme="a"></a>\
         </div>');
+
+      $(this.el).append('<div id="content" data-role="content" data-scrollz="pull">');
       //Creo la lista
-      $(this.el).append('<ul data-role="listview" id="vinos">');
+      $('#content').append('<ul data-role="listview" id="vinos">');
       //añado los elementos a la lista
       _.each(app.coleccion_vinos.models, function (item){
         that.renderVino(item);
@@ -57,6 +80,13 @@ var app = app || {};
     addWine: function(){
       console.log("dentro");
       //app.router.navigate("/add", true);
+    },
+
+    pullAction: function(){
+      isPull = true;
+      app.coleccion_vinos.fetch();
+      console.log("FIN PULL");
+
     }
 });
 
