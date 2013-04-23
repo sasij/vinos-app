@@ -3,6 +3,7 @@ var app = app || {};
 (function($){
 
   var isPull = false;
+  var menuStatus;
 
   app.CollectionWinesView = Backbone.View.extend({
 
@@ -20,6 +21,7 @@ var app = app || {};
     events: {
       'click .ui-btn-right': 'addWine',
       'pulled #content': 'pullAction',
+      'click a.showMenu': 'toggle'
     },
 
     switchAction: function(){
@@ -48,6 +50,7 @@ var app = app || {};
       //Añado la cabecera
       $(this.el).html('\
         <div data-role="header">\
+          <a href="#"class="showMenu">Menu</a>\
           <h1>Los vinos de sasij</h1>\
           <a href="#add" data-role="button" class="ui-btn-right" data-icon="plus" data-corners="false" data-iconpos="notext" data-theme="a"></a>\
         </div>');
@@ -86,8 +89,45 @@ var app = app || {};
       isPull = true;
       app.coleccion_vinos.fetch();
       console.log("FIN PULL");
+    },
 
+    test:function(){
+      console.log("oksodfkspao");
+    },
+
+    show: function() {
+        if(menuStatus) {
+            return;
+        }
+        $('#menu').show();
+        $.mobile.activePage.animate({
+            marginLeft: "165px",
+        }, 300, function () {
+            menuStatus = true
+        });
+    },
+
+    hide: function() {
+        if(!menuStatus) {
+            return;
+        }
+        $.mobile.activePage.animate({
+            marginLeft: "0px",
+        }, 300, function () {
+            menuStatus = false
+            $('#menu').hide();
+        });
+    },
+
+    toggle: function() {
+        if (!menuStatus) {
+            this.show();
+        } else {
+            this.hide();
+        }
+        return false;
     }
+
 });
 
 })(jQuery);

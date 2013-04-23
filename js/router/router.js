@@ -57,6 +57,16 @@ var app = app || {};
     changePage:function (page) {
         $(page.el).attr('data-role', 'page');
         page.render();
+
+        $('body').append('<div id="menu" style="display: none;">\
+  <h3>Menu</h3>\
+  <ul>\
+    <li class="active"><a href="#home" class="contentLink">Home </a></li>\
+    <li><a href="#home" class="contentLink">About </a></li>\
+    <li><a href="#home" class="contentLink">Portfolio </a></li>\
+    <li><a href="#home" class="contentLink">Contact </a></li>\
+  </ul>\
+</div>');
         $('body').append($(page.el));
 
         //var transition = $.mobile.defaultPageTransition;
