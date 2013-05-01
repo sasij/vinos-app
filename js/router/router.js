@@ -10,8 +10,6 @@ var app = app || {};
       "index" : "collection",
       "add" : "addWines",
       "id/:identificator" : "viewDetail"
-      //"filter/:color" : "urlFilter",
-
     },
 
     initialize: function(){
@@ -29,8 +27,6 @@ var app = app || {};
     // actions for index
     collection: function() {
       console.log("coleccion");
-      //app.collection_view = new app.CollectionView();
-      //this.changePage(app.collection_view);
       $.mobile.showPageLoadingMsg();
       app.coleccion_vinos = new app.ColeccionVinos();
       app.vista_coleccion_vinos = new app.CollectionWinesView({collection: this.coleccion_vinos});
@@ -59,14 +55,14 @@ var app = app || {};
         page.render();
 
         $('body').append('<div id="menu" style="display: none;">\
-  <h3>Menu</h3>\
-  <ul>\
-    <li class="active"><a href="#home" class="contentLink">Home </a></li>\
-    <li><a href="#home" class="contentLink">About </a></li>\
-    <li><a href="#home" class="contentLink">Portfolio </a></li>\
-    <li><a href="#home" class="contentLink">Contact </a></li>\
-  </ul>\
-</div>');
+          <h3>Tipos de vino</h3>\
+          <ul>\
+            <li class="active"><a href="#" class="contentLink" id="Todos">Todos</a></li>\
+            <li><a href="#" class="contentLink" id="Tinto">Tinto </a></li>\
+            <li><a href="#" class="contentLink" id="Rosado">Rosado </a></li>\
+            <li><a href="#" class="contentLink" id="Blanco">Blanco </a></li>\
+          </ul>\
+        </div>');
         $('body').append($(page.el));
 
         //var transition = $.mobile.defaultPageTransition;
@@ -74,6 +70,7 @@ var app = app || {};
         if (self.firstPage) {
             transition = 'none';
             window.inicio = false;
+
         }
         //De esta< forma habilitamos los cambios de izquierda a derecha y de derecha a izquierda
         //al pulsar sobre back

@@ -23,7 +23,7 @@
 
     <script type="text/template" id="detalleVino">
         <div data-role="header">
-            <a href="#" data-icon="back" class="back ui-btn-left">Back</a>
+            <a href="#" data-role="button" data-icon="back" class="back ui-btn-left" data-corners="false" data-iconpos="notext" data-theme="a">Back</a>
             <h1>Detalle</h1>
         </div>
         <div data-role="content">
@@ -63,19 +63,19 @@
 
     <script type="text/template" id="NuevoVino">
         <div data-role="header">
-            <a href="#" data-icon="back" class="back ui-btn-left">Back</a>
+            <a href="#" data-role="button" data-icon="back" class="back ui-btn-left" data-corners="false" data-iconpos="notext" data-theme="a">Back</a>
             <h1>Nuevo Vino</h1>
         </div>
         <div data-role="content">
           <input type="text" name="nombre" id="nombre" placeholder="Nombre" value="">
-          <input type="text" name="origen" id="origen" placeholder="Denominación de origen" value="">
+          <input type="text" name="denominacionOrigen" id="denominacionOrigen" placeholder="Denominación de origen" value="">
           <input type="text" name="color" id="color" placeholder="Color" value="">
-          <input type="text" name="año" id="año" placeholder="Año" value="">
+          <input type="text" name="anyo" id="anyo" placeholder="Año" value="">
           <input type="text" name="precio" id="precio" placeholder="€" value="">
           <input type="text" name="puntuacion" id="puntuacion" placeholder="Puntuación" value="">
           <textarea cols="40" rows="8" name="cata" id="cata" placeholder="Cata"></textarea>
-          <input type="file" name="file" id="file" value="" placeholder="Selecciona un archivo">
-          <a href="#" data-role="button" data-theme="a">Añadir</a>
+          <input type="file" name="inputFile" id="inputFile" value="" placeholder="Selecciona un archivo">
+          <a id="submitButton" data-role="button" data-theme="a">Añadir</a>
         </div>
     </script>
 

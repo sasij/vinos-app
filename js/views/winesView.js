@@ -12,16 +12,48 @@ var app = app || {};
     initialize: function(){
 
       _.bindAll(this);
-
       app.coleccion_vinos.on("reset", this.switchAction, this);
 
-      //$('.navbar li').on('click', this.changeNavbar);
     },
 
     events: {
       'click .ui-btn-right': 'addWine',
       'pulled #content': 'pullAction',
       'click a.showMenu': 'toggle'
+    },
+
+
+    filterByTodos: function(){
+      this.hide();
+      app.coleccion_vinos.reset(app.vinos);
+    },
+
+    filterByTinto: function(){
+      this.hide();
+      var color = "tinto";
+      var filterType = color,
+          filtered = _.filter(app.vinos, function (item) {
+           return item.color.toLowerCase() === filterType;
+      });
+      app.coleccion_vinos.reset(filtered);
+    },
+    filterByRosado: function(){
+      this.hide();
+      var color = "rosado";
+      var filterType = color,
+          filtered = _.filter(app.vinos, function (item) {
+           return item.color.toLowerCase() === filterType;
+      });
+      app.coleccion_vinos.reset(filtered);
+    },
+    filterByBlanco: function(){
+      this.hide();
+      var color = "blanco";
+      var filterType = color,
+          filtered = _.filter(app.vinos, function (item) {
+           return item.color.toLowerCase() === filterType;
+      });
+      app.coleccion_vinos.reset(filtered);
     },
 
     switchAction: function(){
@@ -50,7 +82,7 @@ var app = app || {};
       //Añado la cabecera
       $(this.el).html('\
         <div data-role="header">\
-          <a href="#"class="showMenu">Menu</a>\
+          <a href="#"class="showMenu" data-role="button" data-icon="bars" data-corners="false" data-iconpos="notext" data-theme="a"></a>\
           <h1>Los vinos de sasij</h1>\
           <a href="#add" data-role="button" class="ui-btn-right" data-icon="plus" data-corners="false" data-iconpos="notext" data-theme="a"></a>\
         </div>');
