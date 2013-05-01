@@ -63,6 +63,17 @@ var app = app || {};
             <li><a href="#" class="contentLink" id="Blanco">Blanco </a></li>\
           </ul>\
         </div>');
+        //Cambia el fondo de la opcion elegida en el menu
+        $("#menu li a").click(function(){
+          var p = $(this).parent();
+          if($(p).hasClass('active')){
+              $("#menu li").removeClass('active');
+          } else {
+              $("#menu li").removeClass('active');
+              $(p).addClass('active');
+          }
+        });
+
         $('body').append($(page.el));
 
         //var transition = $.mobile.defaultPageTransition;
