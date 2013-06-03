@@ -55,7 +55,7 @@ var app = app || {};
 
             jQuery.ajax({
                 type: "POST",
-                url: "http://vinos-sasij.eu01.aws.af.cm/wines/",
+                url: "http://sasij-vinos.eu01.aws.af.cm/wines/",
                 data:fd,
                 async: false,
                 cache: false,

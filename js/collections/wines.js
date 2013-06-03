@@ -4,7 +4,7 @@ var app = app || {};
 
   app.ColeccionVinos = Backbone.Collection.extend({
     model: app.Vino,
-    url : 'http://vinos-sasij.eu01.aws.af.cm/wines',
+    url : 'http://sasij-vinos.eu01.aws.af.cm/wines',
     //url: '/wines',
 
     fetch : function() {

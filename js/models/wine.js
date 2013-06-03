@@ -15,7 +15,7 @@ var app = app || {};
         },
 
         urlRoot: function(){
-            return "http://vinos-sasij.eu01.aws.af.cm/wines/";
+            return "http://sasij-vinos.eu01.aws.af.cm/wines/";
         }
     });
 
